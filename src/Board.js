@@ -78,12 +78,36 @@
     // --------------------------------------------------------------
     //
     // test if a specific row on this board contains a conflict
+    // ridx 0         1          2         3
+    // [[0,0,0,0],[0,0,0,0],[0,0,0,0],[1,1,0,0]]
+    //
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      // console.log(rowIndex);
+      //debugger;
+      var currentRow = this.get(rowIndex);
+      var rowSum = 0;
+      for (var i = 0; i < currentRow.length; i++) {
+        if (currentRow[i] === 1) {
+          rowSum++;
+        }
+      }
+      if (rowSum > 1) {
+        return true;
+      } else {
+        return false; // fixme
+      }
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
+      // first step we need to iterate through the rows of the board
+      for (var i = 0; i < this.get('n'); i++) {
+        if (this.hasRowConflictAt(i)) {
+          return true;
+        }
+      }
+      // recursively call 'hasrowconflicts' function with the index that we pass in
+      // if there are any conflicts, return true - otherwise return false
       return false; // fixme
     },
 
