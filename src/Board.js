@@ -117,7 +117,22 @@
     // --------------------------------------------------------------
     //
     // test if a specific column on this board contains a conflict
+    //            ridx
+    // [[0,0,0,0], 0
+    //  [0,0,0,0], 1
+    //  [0,0,0,0], 2
+    //  [1,1,0,0]] 3
     hasColConflictAt: function(colIndex) {
+      // get number of rows to iterate over from size of board
+        // var currentRow = this.get(rowIndex);
+      // define a accumulator that will recieve all column values at a given index
+      // set accumulator to 0
+      // iterate over each row
+      // MAYBE USE A CHECK HERE??
+      // push value at a particular index to accumulator for each row
+      // if accumulator is > 0 return true
+      // else return false
+
       return false; // fixme
     },
 
