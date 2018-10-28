@@ -86,8 +86,10 @@
       //debugger;
       var currentRow = this.get(rowIndex);
       var rowSum = 0;
+      debugger;
+      console.log(this);
       for (var i = 0; i < currentRow.length; i++) {
-        if (currentRow[i] === 1) {
+        if (this.attributes[rowIndex][i] === 1) {
           rowSum++;
         }
       }
@@ -102,6 +104,7 @@
     hasAnyRowConflicts: function() {
       // first step we need to iterate through the rows of the board
       for (var i = 0; i < this.get('n'); i++) {
+        debugger;
         if (this.hasRowConflictAt(i)) {
           return true;
         }
