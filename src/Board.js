@@ -161,14 +161,20 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
+    //            ridx
+    // [[0,0,0,0], 0
+    //  [0,0,0,0], 1
+    //  [0,0,0,0], 2
+    //  [0,0,0,0]] 3
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
         var board = this.attributes;
         var queens = 0;
         var size = board.n;
 
         for (var i = 0; i < size; i++) {
-          if (board[i][majorDiagonalColumnIndexAtFirstRow]){
-            queens++
+
+          if (board[i][majorDiagonalColumnIndexAtFirstRow]) {
+            queens++;
           }
           majorDiagonalColumnIndexAtFirstRow++;
         }
@@ -200,6 +206,7 @@
       var size = board.n;
       debugger;
       console.log(size);
+
       for(var i = 0 - (size - 2); i < size; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
