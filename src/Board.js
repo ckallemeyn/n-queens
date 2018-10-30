@@ -204,10 +204,7 @@
     hasAnyMajorDiagonalConflicts: function() {
       var board = this.attributes;
       var size = board.n;
-      debugger;
-      console.log(size);
-
-      for(var i = 0 - (size - 2); i < size; i++) {
+      for (var i = 0 - (size - 2); i < size; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
         }
@@ -238,6 +235,22 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+      var board = this.attributes;
+      var queens = 0;
+      var size = board.n;
+
+      for (var i = 0; i < size; i++) {
+
+        if (board[i][minorDiagonalColumnIndexAtFirstRow]) {
+          queens++;
+        }
+        minorDiagonalColumnIndexAtFirstRow--;
+      }
+      if (queens > 1) {
+        return true;
+      }
+      return false;
+
       // get size of board
       // assign a variable to the size of the board
       // assign a accumulator variable to zero
@@ -251,12 +264,20 @@
       // if (accumulator > 1) {
         //return true;
       //}
-      return false; // fixme
+
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      var board = this.attributes;
+      var size = board.n;
+
+      for(var i = 0 + (size + 2); i > 0; i--) {
+        if (this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
