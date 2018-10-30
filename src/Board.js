@@ -1,3 +1,4 @@
+
 // This file is a Backbone Model (don't worry about what that means)
 // It's part of the Board Visualizer
 // The only portions you need to work on are the helper functions (below)
@@ -86,8 +87,7 @@
       //debugger;
       var currentRow = this.get(rowIndex);
       var rowSum = 0;
-      debugger;
-      console.log(this);
+
       for (var i = 0; i < currentRow.length; i++) {
         if (this.attributes[rowIndex][i] === 1) {
           rowSum++;
@@ -104,7 +104,6 @@
     hasAnyRowConflicts: function() {
       // first step we need to iterate through the rows of the board
       for (var i = 0; i < this.get('n'); i++) {
-        debugger;
         if (this.hasRowConflictAt(i)) {
           return true;
         }
@@ -122,7 +121,7 @@
     // test if a specific column on this board contains a conflict
     //            ridx
     // [[0,0,0,0], 0
-    //  [0,0,0,0], 1
+    //  [1,0,0,0], 1
     //  [0,0,0,0], 2
     //  [1,1,0,0]] 3
     hasColConflictAt: function(colIndex) {
@@ -164,12 +163,40 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      // get size of board
+      // assign a variable to the size of the board
+      // assign a counter variable whose initial value is zero
+      // assign starting column index variable to equal majorDiagonalColumnIndexAtFirstRow
+      // iterate through size of the board using while loop
+      // rowIndex = 0
+      // for (var i = majorDiagonalColumnIndexAtFirstRow; i < n; i++) {
+        //counter += this.attributes[rowIndex][i];
+        //rowIndex++
+      //}
+      // if (counter > 1) {
+        //return true;
+      //}
+      // console.log(this.__proto__._getFirstRowColumnIndexForMajorDiagonalOn(1,1));
+      // return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      // get size of board
+      // assign size to a variable
+      // assign acc variable to 0
+      // iterate across the first row and feeds each colIndex to hasMajorDiagonalConflictAt function
+      // check if hasMajorDiagonalConflictAt(i) is true
+      // return true otherwise
+      // assign counter variable
+      // assign var colIndex to 0
+      // using a for loop iterate from row 1 through row n - 1
+      // add the value of each cell to the accumulator
+      // increment colIndex
+      // check if counter is > 1
+      // return true
+      // otherwise
+      // return false; // fixme
     },
 
 
@@ -179,6 +206,19 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+      // get size of board
+      // assign a variable to the size of the board
+      // assign a accumulator variable to zero
+      // assign starting column index variable to equal minorDiagonalColumnIndexAtFirstRow
+      // iterate through size of the board
+      // assign a variable to rowIndex = 0
+      // for (var i = minorDiagonalColumnIndexAtFirstRow; i > 0; i--) {
+        // accumulator += this.attributes[rowIndex][i];
+        // rowIndex++
+      //}
+      // if (accumulator > 1) {
+        //return true;
+      //}
       return false; // fixme
     },
 
