@@ -128,7 +128,6 @@
       // get number of rows to iterate over from size of board
       var currentRow = this.get(colIndex);
       var columnSum = 0;
-
       for (var i = 0; i < currentRow.length; i++) {
         columnSum += this.attributes[i][colIndex];
       }
@@ -163,6 +162,21 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+        var board = this.attributes;
+        var queens = 0;
+        var size = board.n;
+
+        for (var i = 0; i < size; i++) {
+          if (board[i][majorDiagonalColumnIndexAtFirstRow]){
+            queens++
+          }
+          majorDiagonalColumnIndexAtFirstRow++;
+        }
+        if (queens > 1) {
+          return true;
+        }
+        return false;
+
       // get size of board
       // assign a variable to the size of the board
       // assign a counter variable whose initial value is zero
@@ -182,6 +196,17 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+      var board = this.attributes;
+      var size = board.n;
+      debugger;
+      console.log(size);
+      for(var i = 0 - (size - 2); i < size; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
+
       // get size of board
       // assign size to a variable
       // assign acc variable to 0
