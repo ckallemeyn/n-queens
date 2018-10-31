@@ -10,7 +10,6 @@
 // (There are also optimizations that will allow you to skip a lot of the dead search space)
 // take a look at solversSpec.js to see what the tests are expecting
 
-
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 window.findNRooksSolution = function(n) {
   var solution;
@@ -38,6 +37,16 @@ window.findNRooksSolution = function(n) {
 };
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
+
+// create a new board object of size n
+// create a var equal to the maximum number of rooks
+// create an inner recursive function that accepts the new board as a parameter
+// use toggle method to toggle piece on square
+// use toggle method to add piece to next square
+// run conflict check on row and column
+// if there is a conflict, use toggle method to remove piece from new square, advance to next square and repeat
+// if there is not a conflict, row++, advance to next square and repeat
+//
 window.countNRooksSolutions = function(n) {
   // var board = new Board({n: n});
   var solutionCount = 0;
@@ -65,15 +74,6 @@ window.countNRooksSolutions = function(n) {
     }
   }
   recursiveSolutionSearch(0);
-  // create a new board object of size n
-  // create a var equal to the maximum number of rooks
-  // create an inner recursive function that accepts the new board as a parameter
-  // use toggle method to toggle piece on square
-  // use toggle method to add piece to next square
-  // run conflict check on row and column
-  // if there is a conflict, use toggle method to remove piece from new square, advance to next square and repeat
-  // if there is not a conflict, row++, advance to next square and repeat
-  //
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
 };
