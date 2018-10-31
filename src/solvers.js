@@ -11,6 +11,7 @@
 // take a look at solversSpec.js to see what the tests are expecting
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
+// time complexity = O(n^2)
 window.findNRooksSolution = function(n) {
   var solution;
   var newBoard = new Board({'n': n});
@@ -47,6 +48,8 @@ window.findNRooksSolution = function(n) {
 // if there is a conflict, use toggle method to remove piece from new square, advance to next square and repeat
 // if there is not a conflict, row++, advance to next square and repeat
 
+// time complexity = O(n^2)
+// O(n) + O(n^2)
 window.countNRooksSolutions = function(n) {
   // var board = new Board({n: n});
   var solutionCount = 0;
@@ -64,7 +67,7 @@ window.countNRooksSolutions = function(n) {
       if (rowIndex !== n-1) {
         recursiveSolutionSearch(rowIndex+1);
       } else {
-      //we're in the last row
+        //we're in the last row
         solutionCount++;
       }
       validCols.splice(i, 0, target[0]);
@@ -77,6 +80,8 @@ window.countNRooksSolutions = function(n) {
 };
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
+// time complexity = O(n^2)
+// O(n^2)
 window.findNQueensSolution = function(n) {
   var solution = [];
   var newBoard = new Board({'n': n});
@@ -122,6 +127,7 @@ window.findNQueensSolution = function(n) {
 };
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
+// time complexity = O(n^2);
 window.countNQueensSolutions = function(n) {
   var solutionCount = 0;
   var newBoard = new Board({'n': n});
