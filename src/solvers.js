@@ -103,10 +103,8 @@ window.findNQueensSolution = function(n) {
       newBoard.togglePiece(row, col);
 
       if (!newBoard.hasAnyQueensConflicts()) {
-        // search through the board again
         innerRecurse(row + 1);
         if (solution.length === 1) {
-          // exit the function;
           return;
         }
       }
