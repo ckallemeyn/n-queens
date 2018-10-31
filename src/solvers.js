@@ -61,7 +61,7 @@ window.countNRooksSolutions = function(n) {
       var target = validCols.splice(i,1);
 
       //not in last row; keep recursing
-      if(rowIndex !== n-1) {
+      if (rowIndex !== n-1) {
         recursiveSolutionSearch(rowIndex+1);
       } else {
       //we're in the last row
@@ -78,12 +78,85 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
+  var solution = [];
+  var newBoard = new Board({'n': n});
 
+  var innerRecurse = function(row) {
+    var rows = newBoard.rows();
+    var count = 0;
+    // console.log(rows);
+    row = row || 0;
+    if (n === row) {
+      for(var i = 0; i < rows.length; i++) {
+        for(var j = 0; j < rows[i].length; j++) {
+          count += rows[i][j];
+        }
+      }
+      if (count === n || n === 0) {
+        // push the row into the solution array
+        solution.push(newBoard.rows());
+        // exit the function
+        return;
+      }
+    }
+    for (var col = 0; col < n; col++) {
+      newBoard.togglePiece(row, col);
+
+      if (!newBoard.hasAnyQueensConflicts()) {
+        // search through the board again
+        innerRecurse(row + 1);
+        if (solution.length === 1) {
+          // exit the function;
+          return;
+        }
+      }
+      newBoard.togglePiece(row,col);
+    }
+  };
+  innerRecurse();
+
+  if (solution[0] === undefined) {
+    solution[0] = newBoard.rows();
+  }
+
+  console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
+  return solution[0];
 };
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+  var solutionCount = 0;
+  var newBoard = new Board({'n': n});
+
+  var innerRecurse = function(row) {
+    var rows = newBoard.rows();
+    var count = 0;
+    // console.log(rows);
+    row = row || 0;
+    if (n === row) {
+      for(var i = 0; i < rows.length; i++) {
+        for(var j = 0; j < rows[i].length; j++) {
+          count += rows[i][j];
+        }
+      }
+      if (count === n || n === 0) {
+        // push the row into the solution array
+        solutionCount++;
+        // exit the function
+        return;
+      }
+    }
+    for (var col = 0; col < n; col++) {
+      newBoard.togglePiece(row, col);
+
+      if (!newBoard.hasAnyQueensConflicts()) {
+        // search through the board again
+        innerRecurse(row + 1);
+      }
+      newBoard.togglePiece(row,col);
+    }
+  };
+  innerRecurse();
 
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;

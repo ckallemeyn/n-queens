@@ -63,14 +63,14 @@
     },
 
 
-/*
+    /*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
     \__ \ || (_| | |  | |_  | | | |  __/ | |  __/_
     |___/\__\__,_|_|   \__| |_| |_|\___|_|  \___(_)
 
- */
+    */
     /*=========================================================================
     =                 TODO: fill in these Helper Functions                    =
     =========================================================================*/
@@ -173,65 +173,46 @@
     //  [0,0,0,0], 2
     //  [0,0,0,0]] 3
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-        var board = this.attributes;
-        var queens = 0;
-        var size = board.n;
+      var board = this.attributes;
+      var queens = 0;
+      var size = board.n;
 
-        for (var i = 0; i < size; i++) {
+      for (var i = 0; i < size; i++) {
 
-          if (board[i][majorDiagonalColumnIndexAtFirstRow]) {
-            queens++;
-          }
-          majorDiagonalColumnIndexAtFirstRow++;
+        if (board[i][majorDiagonalColumnIndexAtFirstRow]) {
+          queens++;
         }
-        if (queens > 1) {
-          return true;
-        }
-        return false;
-
-      // get size of board
-      // assign a variable to the size of the board
-      // assign a counter variable whose initial value is zero
-      // assign starting column index variable to equal majorDiagonalColumnIndexAtFirstRow
-      // iterate through size of the board using while loop
-      // rowIndex = 0
-      // for (var i = majorDiagonalColumnIndexAtFirstRow; i < n; i++) {
-        //counter += this.attributes[rowIndex][i];
-        //rowIndex++
-      //}
-      // if (counter > 1) {
-        //return true;
-      //}
-      // console.log(this.__proto__._getFirstRowColumnIndexForMajorDiagonalOn(1,1));
-      // return false; // fixme
+        majorDiagonalColumnIndexAtFirstRow++;
+      }
+      if (queens > 1) {
+        return true;
+      }
+      return false;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       var board = this.attributes;
       var size = board.n;
-      for (var i = 0 - (size - 2); i < size; i++) {
+      for (var i = 0; i < size; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
         }
       }
+      for (var x = 1; x < size; x++) {
+        var rooks = 0;
+        var indexCol = 0;
+        for (var y = x; y < size; y++) {
+          if (board[y][indexCol]) {
+            rooks++;
+          }
+          indexCol++;
+        }
+        if (rooks > 1) {
+          return true;
+        }
+      }
       return false;
-
-      // get size of board
-      // assign size to a variable
-      // assign acc variable to 0
-      // iterate across the first row and feeds each colIndex to hasMajorDiagonalConflictAt function
-      // check if hasMajorDiagonalConflictAt(i) is true
-      // return true otherwise
-      // assign counter variable
-      // assign var colIndex to 0
-      // using a for loop iterate from row 1 through row n - 1
-      // add the value of each cell to the accumulator
-      // increment colIndex
-      // check if counter is > 1
-      // return true
-      // otherwise
-      // return false; // fixme
     },
 
 
@@ -256,21 +237,6 @@
         return true;
       }
       return false;
-
-      // get size of board
-      // assign a variable to the size of the board
-      // assign a accumulator variable to zero
-      // assign starting column index variable to equal minorDiagonalColumnIndexAtFirstRow
-      // iterate through size of the board
-      // assign a variable to rowIndex = 0
-      // for (var i = minorDiagonalColumnIndexAtFirstRow; i > 0; i--) {
-        // accumulator += this.attributes[rowIndex][i];
-        // rowIndex++
-      //}
-      // if (accumulator > 1) {
-        //return true;
-      //}
-
     },
 
     // test if any minor diagonals on this board contain conflicts
@@ -278,8 +244,21 @@
       var board = this.attributes;
       var size = board.n;
 
-      for(var i = 0; i < size + (size - 2); i++) {
+      for (var i = size; i > 0; i--) {
         if (this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      for (var x = 1; x < size - 1; x++) {
+        var rooks = 0;
+        var indexCol = size;
+        for (var y = x; y < size; y++) {
+          if (board[y][indexCol]) {
+            rooks++;
+          }
+          indexCol--;
+        }
+        if (rooks > 1) {
           return true;
         }
       }
