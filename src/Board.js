@@ -85,11 +85,12 @@
     hasRowConflictAt: function(rowIndex) {
       // console.log(rowIndex);
       //debugger;
-      var currentRow = this.get(rowIndex);
+      var board = this.attributes;
       var rowSum = 0;
+      var size = this.attributes.n;
 
-      for (var i = 0; i < currentRow.length; i++) {
-        if (this.attributes[rowIndex][i] === 1) {
+      for (var i = 0; i < size; i++) {
+        if (board[rowIndex][i] === 1) {
           rowSum++;
         }
       }
@@ -126,11 +127,16 @@
     //  [1,1,0,0]] 3
     hasColConflictAt: function(colIndex) {
       // get number of rows to iterate over from size of board
-      var currentRow = this.get(colIndex);
+      var board = this.attributes;
       var columnSum = 0;
-      for (var i = 0; i < currentRow.length; i++) {
-        columnSum += this.attributes[i][colIndex];
+      var size = this.attributes.n;
+
+      for (var i = 0; i < size; i++) {
+        if (board[i][colIndex]) {
+          columnSum++;
+        }
       }
+
       if (columnSum > 1) {
         return true;
       } else {
@@ -272,7 +278,7 @@
       var board = this.attributes;
       var size = board.n;
 
-      for(var i = 0 + (size + 2); i > 0; i--) {
+      for(var i = 0; i < size + (size - 2); i++) {
         if (this.hasMinorDiagonalConflictAt(i)) {
           return true;
         }
