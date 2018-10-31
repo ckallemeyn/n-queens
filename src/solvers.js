@@ -28,7 +28,7 @@ window.findNRooksSolution = function(n) {
       }
       newBoard.togglePiece(row,col);
     }
-  }
+  };
   solution = innerRecurse();
   // ^ outputs an array [[0]];
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
@@ -46,7 +46,7 @@ window.findNRooksSolution = function(n) {
 // run conflict check on row and column
 // if there is a conflict, use toggle method to remove piece from new square, advance to next square and repeat
 // if there is not a conflict, row++, advance to next square and repeat
-//
+
 window.countNRooksSolutions = function(n) {
   // var board = new Board({n: n});
   var solutionCount = 0;
@@ -54,7 +54,6 @@ window.countNRooksSolutions = function(n) {
 
   for (var i = 0; i < n; i++) {
     validCols.push(i);
-    //validRows.push(i);
   }
   var recursiveSolutionSearch = function(rowIndex) {
     for(var i = 0; i < validCols.length; i++) {
@@ -64,15 +63,14 @@ window.countNRooksSolutions = function(n) {
       //not in last row; keep recursing
       if(rowIndex !== n-1) {
         recursiveSolutionSearch(rowIndex+1);
-      }
+      } else {
       //we're in the last row
-      else {
         solutionCount++;
       }
       validCols.splice(i, 0, target[0]);
       //board.togglePiece(rowIndex, validCols[i]);
     }
-  }
+  };
   recursiveSolutionSearch(0);
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
