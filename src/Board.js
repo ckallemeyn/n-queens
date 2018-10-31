@@ -81,7 +81,7 @@
     // test if a specific row on this board contains a conflict
     // ridx 0         1          2         3
     // [[0,0,0,0],[0,0,0,0],[0,0,0,0],[1,1,0,0]]
-    //
+    // Time Complexity = O(n);
     hasRowConflictAt: function(rowIndex) {
       // console.log(rowIndex);
       //debugger;
@@ -102,6 +102,7 @@
     },
 
     // test if any rows on this board contain conflicts
+    // Time Complexity = O(n);
     hasAnyRowConflicts: function() {
       // first step we need to iterate through the rows of the board
       for (var i = 0; i < this.get('n'); i++) {
@@ -125,6 +126,7 @@
     //  [1,0,0,0], 1
     //  [0,0,0,0], 2
     //  [1,1,0,0]] 3
+    // Time Complexity = O(n);
     hasColConflictAt: function(colIndex) {
       // get number of rows to iterate over from size of board
       var board = this.attributes;
@@ -152,6 +154,7 @@
     },
 
     // test if any columns on this board contain conflicts
+    // Time Complexity = O(n);
     hasAnyColConflicts: function() {
       for (var i = 0; i < this.get('n'); i++) {
         if (this.hasColConflictAt(i)) {
@@ -172,6 +175,7 @@
     //  [0,0,0,0], 1
     //  [0,0,0,0], 2
     //  [0,0,0,0]] 3
+    // Time Complexity = O(n);
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       var board = this.attributes;
       var queens = 0;
@@ -191,6 +195,8 @@
     },
 
     // test if any major diagonals on this board contain conflicts
+    // Time Complexity = O(n^2);
+    // O(2n) + O(n^2)
     hasAnyMajorDiagonalConflicts: function() {
       var board = this.attributes;
       var size = board.n;
@@ -221,6 +227,7 @@
     // --------------------------------------------------------------
     //
     // test if a specific minor diagonal on this board contains a conflict
+    // Time Complexity = O(n);
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       var board = this.attributes;
       var queens = 0;
@@ -240,6 +247,7 @@
     },
 
     // test if any minor diagonals on this board contain conflicts
+    // Time Complexity = O(n^2);
     hasAnyMinorDiagonalConflicts: function() {
       var board = this.attributes;
       var size = board.n;
